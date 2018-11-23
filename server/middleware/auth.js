@@ -12,7 +12,7 @@ module.exports.ensureAuthenticated = function ensureAuthenticated(req, resp, nex
     catch(err){
         return resp
             .status(401)
-        .send({error: "El token ha expirado"});    
+        .send({error: "Token has expired"});    
     }
     req.user = payload.sub;
     next();
