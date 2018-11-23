@@ -9,6 +9,8 @@ knex = require('knex')({
       filename: "./foro.db"
     }
 });
+var cors = require('cors');
+app.use(cors());
 var ensureAuthenticated = require('./middleware/auth').ensureAuthenticated;
 
 SECRET = "Supersecreto";

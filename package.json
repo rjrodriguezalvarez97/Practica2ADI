@@ -18,6 +18,7 @@
   "homepage": "https://github.com/rjrodriguezalvarez97/Practica1ADI#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "jwt-simple": "^0.5.5",
     "knex": "^0.15.2",
