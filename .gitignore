@@ -62,3 +62,6 @@ typings/
 
 Documentacion.docx
 Documentacion.pdf
+
+.cache/
+dist/
