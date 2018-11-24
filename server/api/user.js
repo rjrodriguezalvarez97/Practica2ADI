@@ -4,7 +4,6 @@ app.post('/login', function(req, resp){
     try{
         email = req.body.email
         password = req.body.password
-
         if(email && password){
             findUser(email,password,function(data){
                 if(data.id){
@@ -16,13 +15,16 @@ app.post('/login', function(req, resp){
                     };
                     var token = jwt.encode(payload, SECRET);
                     resp.status(200);
-                    resp.send({token: token});
+                    resp.send({token: token, id: data.id});
                 }
                 else{
                     resp.status(401);
                     resp.send({error: "Unauthorized"});
                 }
             })
+        }
+        else{
+            resp.status(400).send({error: "Bad Request"});
         }
     }
     catch(err){
