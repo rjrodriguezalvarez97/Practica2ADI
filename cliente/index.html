@@ -13,18 +13,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="wrap">
+                <div class="wrap" id="divFormLogin" style="display: none">
                     <p class="form-title">Iniciar sesión</p>
                     
-                    <form class="login">
+                    <form id="formLogin" class="login">
                     <!-- <label class="label"for="username">Nombre de usuario</label> -->
-                    <input type="text" id="username" placeholder="Usuario" />
+                    <input type="email" required id="email" placeholder="Email" />
                     <!-- <label class="label"for="username">Contraseña</label> -->
-                    <input type="password" id="password" placeholder="Contraseña" />
+                    <input type="password" id="password" required placeholder="Contraseña" />
                     <input type="submit" id="submitLogin" value="Sign In" class="btn btn-primary btn-sm" />
-
-                    </form>
-
+                    <div id="errorLogin" class="alert alert-danger error" role="alert">
+                            
+                    </div>
+                    </form> 
                 </div>
             </div>
         </div>

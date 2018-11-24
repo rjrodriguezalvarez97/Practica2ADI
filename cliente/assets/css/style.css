@@ -1,6 +1,6 @@
 body
 {
-    background: url('https://i0.wp.com/www.javiquil.com/wp-content/uploads/2014/01/RedesScouts.002.png') fixed;
+    background: url('../img/background.png') fixed;
     background-size: cover;
     padding: 0;
     margin: 0;
@@ -39,7 +39,7 @@ form
     margin: 0 auto;
 }
 
-form.login input[type="text"], form.login input[type="password"]
+form.login input[type="email"], form.login input[type="password"]
 {
     width: 100%;
     margin: 0;
@@ -71,13 +71,6 @@ form.login input[type="submit"]:hover
     transition: background-color 0.5s ease;
 }
 
-
-form.login .forgot-pass-content
-{
-    min-height: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 form.login label
 {
     font-family: 'Century Gothic';
@@ -85,8 +78,10 @@ form.login label
     font-weight: 600;
     color: #000000;
 }
-
-f
+.error{
+    display: none;
+    margin-top: 3%;
+}
 form.login a:hover
 {
     color: #35c9e4;
