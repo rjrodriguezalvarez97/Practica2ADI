@@ -3,22 +3,29 @@ import {Servicio_API} from './servicios/Servicio_API'
 import {Templates} from './templates/Templates'
 
 var servicio_API = new Servicio_API('http://localhost:3000/')
-var templates = new Templates();
+var templatesPrueba = new Templates();
 
 
 function createErrorLogin(errorMessage){
 
-    var errorHTML = templates.errorTemplate({message: errorMessage});
+    var errorHTML = templatesPrueba.errorTemplate({message: errorMessage});
     var errorLogin = document.getElementById('errorLogin');
     errorLogin.innerHTML=errorHTML;
     errorLogin.style.display = 'block';
 }
+
+function forumDetails(id){
+    var divForumDetailPopUp = document.getElementById('divForumDetailPopUp');
+    divForumDetailPopUp.innerHTML = templatesPrueba.forumDetailsModal();
+    divForumDetailPopUp.style.display = "block";
+}
+window.forumDetails = forumDetails;
 function createNavbar(){
     var userExists = {};
     if(localStorage.token && localStorage.id){
        userExists.user = true;
     }
-    document.getElementById('navbar').innerHTML = templates.navbarTemplate(userExists);
+    document.getElementById('navbar').innerHTML = templatesPrueba.navbarTemplate(userExists);
     try{
         document.getElementById('logout').addEventListener('click', function() {
         localStorage.removeItem('token');
@@ -27,12 +34,25 @@ function createNavbar(){
     })}
     catch{//When a user is not logged in element logout doesn't exist  
     }
+}
+function isLogged(){
+    return localStorage.token !== undefined;
+}
+
+function createForumList(){
+    if(isLogged()){
+        var forumList = servicio_API.getForums().then(function (result){
+            var divForumList = document.getElementById('divForumsList');
+            divForumsList.innerHTML = templatesPrueba.forumListTemplate(result);
+            divForumsList.style.display = 'block';
+        })
+    }
 
 }
 function toggleLoginForm(){
 
     var form = document.getElementById('divFormLogin');
-    form.style.display === 'block' ? form.style.display = "none" : form.style.display = "block";
+    isLogged() ? form.style.display = "none" : form.style.display = "block";
 }
 document.addEventListener("DOMContentLoaded", function(){
     
@@ -62,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     toggleLoginForm();
     createNavbar();
+    createForumList();
 
 
 

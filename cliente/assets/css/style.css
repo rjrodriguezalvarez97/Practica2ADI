@@ -13,7 +13,6 @@ body
     min-height: 100%;
     position: absolute;
     margin-top: 10%;
-    z-index: 99;
     
 }
 
@@ -81,6 +80,15 @@ form.login label
 .error{
     display: none;
     margin-top: 3%;
+}
+.table{
+    background-color: rgba(128,128,128,0.4);
+    width: 90%;
+}
+#divForumDetailPopUp{
+    position: relative ;
+    margin-top: 20%;
+    z-index: 99 ;
 }
 form.login a:hover
 {

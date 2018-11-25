@@ -10,9 +10,15 @@ export class Servicio_API{
                'Content-Type': 'application/json'
            },
            body: JSON.stringify(payload)
-       }).then(function (respuesta) {
-          return respuesta.json();
+       }).then(function (response) {
+          return response.json();
        })
+    }
+    getForums(){
+        return fetch(this.API_URL + 'forums').
+        then(function (response){
+            return response.json();
+        });
     }
 
 }
