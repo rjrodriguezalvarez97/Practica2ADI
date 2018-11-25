@@ -50,8 +50,9 @@ app.post('/forums',ensureAuthenticated, function(req, resp){
 
 app.put('/forums/:id(\\d+)', ensureAuthenticatedAdmin, function(req, resp){
     var name = req.body.name;
-    if(name){
-        updateForum(req.params.id, name, function(data, err) {
+    var description = req.body.description;
+    if(name && description){
+        updateForum(req.params.id, name,description, function(data, err) {
             if(err){
                 resp.status(400).send({error: "Unable to update forum with id: " + req.params.id});
             }else{
@@ -73,9 +74,9 @@ function getForums(callback){
 }
 
 function getForumById(id, callback){
-    knex.select('name').from('Forum').where('id', id).
+    knex.select('name', 'description').from('Forum').where('id', id).
     then(function (data){
-        callback(data, undefined);
+        callback(data[0], undefined);
     }).
     catch(function (error){
         callback(undefined, error);
@@ -102,13 +103,15 @@ function deleteForum(id, callback){
      });
 }
 
-function updateForum(id, name, callback){
+function updateForum(id, name, description, callback){
     knex('Forum').where('id',id).update({
-        name: name
+        name: name,
+        description: description
     }).then(function (data){
         callback(data, undefined);
     }).
     catch(function (error){
+        console.log(error);
        callback(undefined, error);
     });
 }

@@ -34,18 +34,46 @@
 
                 <div class="wrap" id="divForumsList" style="display: none">
                 </div>
-                <div class="wrap" id="divDetailsForumList" style="display: none">
-
-                </div>
-                
 
                 
-            </div>
-            <div id="divForumDetailPopUp" class="col-md-12" style="display: none">
-        
             </div>
         </div>
     </div>
+
+<!-- Modal -->
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h4 class="modal-title">Detalles del foro</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class ="row">
+          <div class="col-sm-12">
+            <label for="forumNameEntry">Nombre del foro:</label>
+            <input type="text" id="forumNameEntry">
+          </div>
+          <div class="col-sm-12">
+            <label for="forumDescriptrionEntry">Descipcion del foro:</label>
+            <input type="text" id="forumDescriptrionEntry">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning" id="buttonUpdate">Update</button>
+    </div>
+    </div>
+    </div>
+    </div>
+
+</div>
 </body>
 <script src="/assets/js/jquery-3.0.0.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>

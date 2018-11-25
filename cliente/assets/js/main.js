@@ -15,11 +15,40 @@ function createErrorLogin(errorMessage){
 }
 
 function forumDetails(id){
-    var divForumDetailPopUp = document.getElementById('divForumDetailPopUp');
-    divForumDetailPopUp.innerHTML = templatesPrueba.forumDetailsModal();
-    divForumDetailPopUp.style.display = "block";
+    var forumNameEntry = document.getElementById('forumNameEntry');
+    var forumDescriptionEntry = document.getElementById('forumDescriptrionEntry');
+    servicio_API.getForum(id).then(function (forum){
+        forumNameEntry.value = forum.name;
+        forumDescriptionEntry.value = forum.description;
+        var updateButton = document.getElementById('buttonUpdate');
+
+        updateButton.addEventListener('click', updateForum);
+        updateButton.idForum = id;
+        console.log("id del boton: " + updateButton.idForum);
+    })
+
 }
 window.forumDetails = forumDetails;
+
+function updateForum(event){
+    var forumNameEntry = document.getElementById('forumNameEntry');
+    var forumDescriptionEntry = document.getElementById('forumDescriptrionEntry');
+    var payload = {
+        name: forumNameEntry.value, 
+        description: forumDescriptionEntry.value
+    };
+    servicio_API.updateForum(event.target.idForum, payload).then(function (response){
+        location.reload();
+
+    })
+}
+
+function deleteForum(id){
+    servicio_API.deleteForum(id).then(function (response) {
+        location.reload();
+    })
+}
+window.deleteForum = deleteForum;
 function createNavbar(){
     var userExists = {};
     if(localStorage.token && localStorage.id){
@@ -67,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 localStorage.setItem("id", resp.id);
                 createNavbar();
                 toggleLoginForm();
+                createForumList();
 
             }else{
                 switch(resp.error){

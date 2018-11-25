@@ -50,8 +50,8 @@ export class Templates{
                     <th scope="row">{{ id }}</th>
                     <td>{{name}}</td>
                     <td>
-                    <a href="javascript:forumDetails({{id}})" data-dismiss="modal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="javscript:deleteForum({{id}})">
+                    <a href="#myModal" data-toggle="modal" onclick="forumDetails({{id}})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="javascript:deleteForum({{id}})">
                         <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                     </td>
                 </tr>
@@ -68,6 +68,8 @@ export class Templates{
     forumDetailsModal(){
         var forumDetailModalTemplate = 
         `
+        <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
         <h4 class="modal-title">Modal Header</h4>
@@ -79,6 +81,8 @@ export class Templates{
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
         </div>
         </div>
         `
