@@ -12,12 +12,18 @@ body
     height: 100%;
     min-height: 100%;
     position: absolute;
-    margin-top: 10%;
+    margin-top: 20%;
     
 }
 
 label{
     color: #000000;
+    margin-right: 10%;
+}
+input[type="text"]{
+    padding-left: 2%;
+    width: 80%;
+    margin-bottom: 2%;
 }
 
 p.form-title
@@ -84,6 +90,9 @@ form.login label
 .table{
     background-color: rgba(128,128,128,0.4);
     width: 90%;
+}
+i{
+   background-color: rgba(255,255,255,0.04);
 }
 #divForumDetailPopUp{
     position: relative ;

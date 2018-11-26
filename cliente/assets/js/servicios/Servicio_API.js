@@ -63,4 +63,17 @@ export class Servicio_API{
         })
     }
 
+    getSubforumsByForumId(id){
+        return fetch(this.API_URL + 'forums/' + id + '/subforums').
+        then(function (response){
+            return response.json();
+        })
+    }
+    getSubforum(id){
+        return fetch(this.API_URL + 'subforums/' + id).
+        then(function (response){
+            return response.json();
+        })
+    }
+
 }

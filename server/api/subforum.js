@@ -34,7 +34,7 @@ function getAllSubforumsByForumId(idForum, callback){
 function getSubforumById(idSubforum, callback){
     knex('Subforum').select('id','title','forum').where('id', idSubforum).
     then(function (data){
-        callback(data, undefined);
+        callback(data[0], undefined);
     }).
     catch(function (error) {
         callback(undefined, error);

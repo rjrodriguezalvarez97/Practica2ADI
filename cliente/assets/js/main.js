@@ -75,14 +75,51 @@ function createNavbar(){
     catch{//When a user is not logged in element logout doesn't exist  
     }
 }
+
+function createSubforumList(id,name){
+    if(isLogged()){
+        servicio_API.getSubforumsByForumId(id).then(function (result){
+            var data = {};
+            data.data = result;
+            data.name = name;
+            var divSubforumList = document.getElementById('divSubforumList');
+            divSubforumList.innerHTML = templatesPrueba.subForumListTemplate(data);
+            divSubforumList.style.display = 'block';
+            toggleForumList();
+
+        })
+        
+
+    }
+}
+
+function subforumDetails(id){
+    servicio_API.getSubforum(id).
+    then(function (result){
+        console.log(result);
+        document.getElementById('subforumNameEntry').value = result.title;
+    })
+}
+window.subforumDetails = subforumDetails;
+window.createSubforumList = createSubforumList;
+function toggleForumList(){
+    var forumList = document.getElementById('divForumsList');
+    forumList.style.display = forumList.style.display === 'block' ? 'none' : 'block';
+}
+function backToForumList(){
+    document.getElementById('divSubforumList').style.display= 'none';
+    toggleForumList();
+}
+window.backToForumList = backToForumList;
 function isLogged(){
     return localStorage.token !== undefined;
 }
 
 function createForumList(){
     if(isLogged()){
-        var forumList = servicio_API.getForums().then(function (result){
+        servicio_API.getForums().then(function (result){
             var divForumList = document.getElementById('divForumsList');
+
             divForumsList.innerHTML = templatesPrueba.forumListTemplate(result);
             divForumsList.style.display = 'block';
         })

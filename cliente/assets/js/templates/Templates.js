@@ -45,52 +45,68 @@ export class Templates{
                 </tr>
             </thead>
             <tbody>
-                {{#each data}}
+                {{#each .}}
                 <tr>
                     <th scope="row">{{ id }}</th>
                     <td>{{name}}</td>
                     <td>
                     <a href="#myModal" data-toggle="modal" onclick="forumDetails({{id}})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="javascript:deleteForum({{id}})">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                    <a href="javascript:deleteForum({{id}})"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a href="javascript:createSubforumList({{id}},'{{name}}')"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 {{/each}}
                 <tr>
                     <th scope="row"> </th>
                     <td></td>
-                    <td> <a href="#createForumModal" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td> </td>
+                    <td> <a href="#createForumModal" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td>
             </tbody>
         </table>
         `
         var forumListCompiled = compile(forumListTemplate);
-        var forumListHTML = forumListCompiled({data: data});
+        var forumListHTML = forumListCompiled(data);
         return forumListHTML;
     }
-
-    forumDetailsModal(){
-        var forumDetailModalTemplate = 
+    subForumListTemplate(data){
+        var subforumListTemplate = 
         `
-        <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-        <h4 class="modal-title">Modal Header</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>Subforos de {{foro}} </h3>
+        <table class="table table-striped table-light">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre del subforo</th>
+                <th scope="col">Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <th scope="row">{{ id }}</th>
+                    <td>{{title}}</td>
+                    <td>
+                    <a href="#editSubforum" data-toggle="modal" onclick="subforumDetails({{id}})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="javascript:deleteSubforum({{id}})"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                {{else}}
+                <tr>
+                    <th scope="row"></th>
+                    <td>No existen subforos para este foro</td>
+                    <td></td>
 
-        </div>
-        <div class="modal-body">
-            <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-        </div>
-        </div>
-        `
-        var forumDetailModalCompiled = compile( forumDetailModalTemplate);
-        var forumDetailModalHTML = forumDetailModalCompiled();
-        return forumDetailModalHTML;
+                </tr>
+                {{/each}}
+                <tr>
+                    <th scope="row"> </th>
+                    <td></td>
+                    <td> <a href="javascript:backToForumList()">Volver</a></td>
+            </tbody>
+        </table>
+        `;
+        var subforumListCompiled = compile(subforumListTemplate);
+        var subforumListHTML = subforumListCompiled(data);
+        return subforumListHTML;
     }
+    
 }
