@@ -49,4 +49,18 @@ export class Servicio_API{
         })
     }
 
+    createForum(payload){
+        return fetch(this.API_URL + 'forums', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.token
+            },
+            body: JSON.stringify(payload)
+        }).then(function (response){
+            console.log(response);
+            return response.json();
+        })
+    }
+
 }

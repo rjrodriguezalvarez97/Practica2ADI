@@ -48,6 +48,17 @@ function deleteForum(id){
         location.reload();
     })
 }
+function createForum(){
+    var createForumNameEntry = document.getElementById('createForumNameEntry');
+    var createForumDescriptrionEntry = document.getElementById('createForumDescriptrionEntry');
+    var payload = {
+        name: createForumNameEntry.value,
+        description: createForumDescriptrionEntry.value
+    };
+    servicio_API.createForum(payload).then(function (response){
+        location.reload();
+    })
+}
 window.deleteForum = deleteForum;
 function createNavbar(){
     var userExists = {};
@@ -55,7 +66,7 @@ function createNavbar(){
        userExists.user = true;
     }
     document.getElementById('navbar').innerHTML = templatesPrueba.navbarTemplate(userExists);
-    try{
+    try{ 
         document.getElementById('logout').addEventListener('click', function() {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
@@ -110,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     });
 
+    document.getElementById('createForumModalSaveButton').addEventListener("click", createForum);
     toggleLoginForm();
     createNavbar();
     createForumList();

@@ -34,8 +34,9 @@ app.delete('/forums/:id(\\d+)', ensureAuthenticatedAdmin, function(req, resp){
 
 app.post('/forums',ensureAuthenticated, function(req, resp){
     var name = req.body.name;
+    var description = req.body.description;
     if(name){
-        createForum(name,function(data, err){
+        createForum(name, description,function(data, err){
             if(err){
                 resp.status(400).send({error: "Unable to create forum"});
             }else{
@@ -83,8 +84,12 @@ function getForumById(id, callback){
      });
 }
 
-function createForum(name, callback){
-    knex('Forum').insert({name: name},'id').
+function createForum(name, description, callback){
+    var data = {};
+    data.name = name;
+    if(description)
+        data.description = description;
+    knex('Forum').insert(data,'id').
     then(function (data){
         callback(data[0], undefined);
     }).

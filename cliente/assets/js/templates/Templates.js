@@ -55,8 +55,11 @@ export class Templates{
                         <i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                     </td>
                 </tr>
-
                 {{/each}}
+                <tr>
+                    <th scope="row"> </th>
+                    <td></td>
+                    <td> <a href="#createForumModal" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i></a></td> </td>
             </tbody>
         </table>
         `
