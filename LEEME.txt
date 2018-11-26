@@ -1,0 +1,9 @@
+Usuario para loguearse:
+email: admin@admin.com
+pass: admin
+
+Partes optativas:
+Utilizar boostrap
+Listado opcional: Una vez logueado si pinchamos en el ojo de  Foro general 1 se mostrará el subforo que pertenecen a ese foro y se pueden editar y borrar.
+Editar: Si apretamos al icono del papel con el lapiz se pueden editar y visualizar los detalles de los items.
+Estructurar proyecto: He separado las vistas en Templates.js, los servicios en Servicio_API y la logica de la aplicación en Main.js
