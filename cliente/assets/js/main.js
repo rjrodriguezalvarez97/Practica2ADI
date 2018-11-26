@@ -112,7 +112,10 @@ function createForum(){
         location.reload();
     })
 }
-
+/**
+ * Show details and set update forum EventListener
+ * @param {int} id 
+ */
 function forumDetails(id){
     var forumNameEntry = document.getElementById('forumNameEntry');
     var forumDescriptionEntry = document.getElementById('forumDescriptrionEntry');
@@ -123,11 +126,13 @@ function forumDetails(id){
 
         updateButton.addEventListener('click', updateForum);
         updateButton.idForum = id;
-        console.log("id del boton: " + updateButton.idForum);
     })
 }
 
-
+/**
+ * Triggers forum update
+ * @param {event} event 
+ */
 function updateForum(event){
     var forumNameEntry = document.getElementById('forumNameEntry');
     var forumDescriptionEntry = document.getElementById('forumDescriptrionEntry');
@@ -140,14 +145,20 @@ function updateForum(event){
 
     })
 }
-
+/**
+ * Deletes a forum
+ * @param {int} id 
+ */
 function deleteForum(id){
     servicio_API.deleteForum(id).then(function (response) {
         location.reload();
     })
 }
 
-
+/**
+ * Show subforums details
+ * @param {int} id 
+ */
 function subforumDetails(id){
     servicio_API.getSubforum(id).
     then(function (result){
@@ -155,7 +166,10 @@ function subforumDetails(id){
         document.getElementById('subforumNameEntry').value = result.title;
     })
 }
-
+/**
+ * Deletes a subforum
+ * @param {int} id 
+ */
 function deleteSubforum(id){
     servicio_API.deleteSubForum(id).
     then(function (response){
