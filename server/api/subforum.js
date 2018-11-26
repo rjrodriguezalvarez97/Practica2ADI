@@ -1,4 +1,4 @@
-var ensureAuthenticated = require('../middleware/auth').ensureAuthenticated;
+var ensureAuthenticatedAdmin = require('../middleware/auth').ensureAuthenticatedAdmin;
 
 app.get('/forums/:idForum(\\d+)/subforums', function(req, resp){
     getAllSubforumsByForumId(req.params.idForum, function(data, error){
@@ -20,6 +20,17 @@ app.get('/subforums/:idSubforum(\\d+)', function(req, resp){
     })
 });
 
+app.delete('/subforums/:idSubforum(\\d+)',ensureAuthenticatedAdmin, function(req, resp){
+    deleteSubforum(req.params.idSubforum, function(data, err){
+        if(err){
+            resp.status(400).send({error: "Unable to retrieve subforum with id: " + id})
+        } else{
+            resp.status(200).send({message: "Deleted subforum with id: " + req.params.id});
+        }
+        
+    })
+})
+
 
 function getAllSubforumsByForumId(idForum, callback){
     knex('Subforum').select('id','title','forum').where('forum', idForum).
@@ -39,4 +50,15 @@ function getSubforumById(idSubforum, callback){
     catch(function (error) {
         callback(undefined, error);
     });
+}
+
+function deleteSubforum(idSubforum, callback){
+    knex('Subforum').where('id',idSubforum).del().
+    then(function (data){
+        callback(data, undefined);
+    }).
+    catch(function (error){
+        console.log(error);
+        callback(undefined, error);
+     });
 }

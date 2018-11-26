@@ -75,5 +75,16 @@ export class Servicio_API{
             return response.json();
         })
     }
+    deleteSubForum(id){
+        return fetch(this.API_URL + 'subforums/' + id,{
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.token
+            }
+        }).
+        then(function (response){
+            return response.json();
+        })
+    }
 
 }

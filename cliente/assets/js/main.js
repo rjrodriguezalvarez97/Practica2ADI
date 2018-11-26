@@ -100,6 +100,15 @@ function subforumDetails(id){
         document.getElementById('subforumNameEntry').value = result.title;
     })
 }
+
+function deleteSubforum(id){
+    servicio_API.deleteSubForum(id).
+    then(function (response){
+        location.reload();
+    })
+
+}
+window.deleteSubforum = deleteSubforum;
 window.subforumDetails = subforumDetails;
 window.createSubforumList = createSubforumList;
 function toggleForumList(){
