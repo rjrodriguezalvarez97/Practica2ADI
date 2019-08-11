@@ -12,3 +12,6 @@ El objetivo de esta práctica es desarrollar una web que sirva de cliente al API
 
 email: admin@admin.com
 pass: admin
+
+--
+* Si te ha servido, sígueme en GitHub!
